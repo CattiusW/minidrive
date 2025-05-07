@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniDrive +</title>
+    <link rel="shortcut icon" href="data:image/png;base64,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" />
+    <style>
+        :root {
+            --bg: #0f0f0f;
+            --text: #00ff00;
+            --accent: #33ff33;
+            --accent-light: #66ff66;
+            --card-bg: rgba(0, 255, 0, 0.05);
+            --border: rgba(0, 255, 0, 0.2);
+        }
+
+        body.light {
+            --bg: #1f1f1f;
+        }
+
+        body {
+            margin: 0;
+            padding: 2rem;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--accent-light);
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        .controls,
+        .file-list,
+        #storageBar {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .controls button,
+        .file-item button {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--accent);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .controls button:hover,
+        .file-item button:hover {
+            background: var(--accent-light);
+            color: #0f0f0f;
+            transform: translateY(-2px);
+            box-shadow: 0 0 10px var(--accent-light);
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            margin: 5px 0;
+            padding: 12px 18px;
+            border-radius: 10px;
+            word-break: break-word;
+            transition: transform 0.2s ease, border-color 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .file-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-light);
+        }
+
+        #storageUsage {
+            text-align: center;
+            color: var(--accent);
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #progressBar {
+            width: 100%;
+            height: 14px;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            background: var(--card-bg);
+            position: relative;
+            z-index: 1;
+        }
+
+        #progressFill {
+            height: 100%;
+            width: 0;
+            background: var(--accent);
+            border-radius: 7px;
+            transition: width 0.3s ease;
+        }
+
+        #dropZone {
+            border: 2px dashed var(--accent);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin: 1rem auto;
+            max-width: 800px;
+            transition: background 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        #dropZone.dragover {
+            background: rgba(0, 255, 0, 0.05);
+            border-color: var(--accent-light);
+        }
+
+        #hackScreen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            padding: 20px;
+            overflow: auto;
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="title">MiniDrive + 💾</h1>
+    <div class="controls">
+        <button onclick="addFiles()">Add File</button>
+        <button onclick="addFolders()">Add Folder</button>
+        <button onclick="exportBackup()">Export Backup</button>
+        <button onclick="importBackup()">Import Backup</button>
+        <button onclick="clearAllFiles()">Clear All Files</button>
+        <button onclick="toggleHackScreen()">Activate Hack Mode</button>
+    </div>
+    <div id="dropZone">Drop files or folders here 📂</div>
+    <div id="storageUsage">Used: 0 KB</div>
+    <div id="progressBar">
+        <div id="progressFill"></div>
+    </div>
+    <div class="file-list" id="fileList"></div>
+    <input type="file" id="fileInput" multiple style="display:none">
+    <input type="file" id="folderInput" multiple webkitdirectory directory style="display:none">
+    <div id="hackScreen"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        let storedFiles = [];
+
+        function addFiles() {
+            document.getElementById('fileInput').click();
+        }
+
+        function addFolders() {
+            document.getElementById('folderInput').click();
+        }
+
+        document.getElementById('fileInput').addEventListener('change', e => processFiles(e.target.files));
+        document.getElementById('folderInput').addEventListener('change', e => processFiles(e.target.files));
+
+        function processFiles(fileList) {
+            Array.from(fileList).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    storedFiles.push({
+                        name: file.name,
+                        size: file.size,
+                        data: e.target.result.split(',')[1],
+                        type: file.type || 'application/octet-stream'
+                    });
+                    renderFileList();
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function renderFileList() {
+            const container = document.getElementById('fileList');
+            container.innerHTML = '';
+            let totalSize = 0;
+            storedFiles.forEach(file => {
+                totalSize += file.size;
+                const div = document.createElement('div');
+                div.className = 'file-item';
+                const blob = b64toBlob(file.data, file.type);
+                const url = URL.createObjectURL(blob);
+                div.innerHTML = `${file.name} (${(file.size / 1024).toFixed(1)} KB) <a href="${url}" download="${file.name}">⬇️ Download</a>`;
+                container.appendChild(div);
+            });
+            updateUsage(totalSize);
+        }
+
+        function updateUsage(bytes) {
+            document.getElementById('storageUsage').textContent = `Used: ${(bytes / 1024).toFixed(1)} KB`;
+            document.getElementById('progressFill').style.width = Math.min(100, bytes / (500 * 1024 * 1024) * 100) + '%';
+        }
+
+        function exportBackup() {
+            const password = prompt('Enter a password to encrypt the backup (leave blank for no encryption):');
+
+            const backupData = storedFiles.map(file => ({
+                name: file.name,
+                size: file.size,
+                data: file.data,
+                type: file.type
+            }));
+
+            let blob;
+
+            if (password) {
+                const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(backupData), password).toString();
+                blob = new Blob([encryptedData], { type: 'application/json' });
+            } else {
+                blob = new Blob([JSON.stringify(backupData)], { type: 'application/json' });
+            }
+
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'MiniDriveBackup.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            if (!password) {
+                alert('Backup exported without encryption.');
+            }
+        }
+
+        function toggleHackScreen() {
+            const hackScreen = document.getElementById('hackScreen');
+            if (hackScreen.style.display === 'none') {
+                hackScreen.style.display = 'block';
+                hackScreen.innerHTML = '';
+                let lines = 0;
+                const phrases = [
+                    "Establishing secure connection...",
+                    "Bypassing firewall...",
+                    "Decrypting payload...",
+                    "Uploading exploit...",
+                    "Fetching data packets...",
+                    "Connection stabilized.",
+                    "Data extraction complete.",
+                    "Session terminated successfully."
+                ];
+                const interval = setInterval(() => {
+                    if (hackScreen.style.display === 'none') {
+                        clearInterval(interval);
+                        return;
+                    }
+                    const random = phrases[Math.floor(Math.random() * phrases.length)];
+                    const timestamp = new Date().toLocaleTimeString();
+                    hackScreen.innerHTML += `<span style='color:#33ff33;'>[${timestamp}]</span> ${random}<br>`;
+                    hackScreen.scrollTop = hackScreen.scrollHeight;
+                    if (++lines > 50) hackScreen.innerHTML = '';
+                }, Math.random() * 300 + 100);
+            } else {
+                hackScreen.style.display = 'none';
+            }
+        }
+
+        function b64toBlob(b64Data, contentType = '', sliceSize = 512) {
+            const byteCharacters = atob(b64Data);
+            const byteArrays = [];
+            for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                const slice = byteCharacters.slice(offset, offset + sliceSize);
+                const byteNumbers = new Array(slice.length);
+                for (let i = 0; i < slice.length; i++) {
+                    byteNumbers[i] = slice.charCodeAt(i);
+                }
+                byteArrays.push(new Uint8Array(byteNumbers));
+            }
+            return new Blob(byteArrays, { type: contentType });
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') document.getElementById('hackScreen').style.display = 'none';
+        });
+
+        const dropZone = document.getElementById('dropZone');
+        dropZone.addEventListener('dragover', e => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+        dropZone.addEventListener('drop', e => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            processFiles(e.dataTransfer.files);
+        });
+
+        const canvas = document.createElement('canvas');
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.zIndex = '0';
+        canvas.style.pointerEvents = 'none';
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        let columns, drops;
+
+        function resizeMatrix() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            columns = Math.floor(canvas.width / 14);
+            drops = Array(columns).fill(1);
+        }
+
+        resizeMatrix();
+        window.addEventListener('resize', resizeMatrix);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(15, 15, 15, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff00';
+            ctx.font = '14px Courier New';
+            drops.forEach((y, index) => {
+                const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+                ctx.fillText(text, index * 14, y * 14);
+                if (y * 14 > canvas.height && Math.random() > 0.975) drops[index] = 0;
+                drops[index]++;
+            });
+        }
+        setInterval(drawMatrix, 33);
+    </script>
+</body>
+
+</html>
