@@ -174,7 +174,7 @@
     <input type="file" id="fileInput" multiple style="display:none">
     <input type="file" id="folderInput" multiple webkitdirectory directory style="display:none">
     <div id="hackScreen"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script>
         let storedFiles = [];
 
@@ -358,6 +358,50 @@
             });
         }
         setInterval(drawMatrix, 33);
+        function importBackup() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'application/json';
+    input.onchange = e => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            try {
+                const encryptedData = reader.result;
+                const password = prompt('Enter the password to decrypt the backup (leave blank if not encrypted):');
+
+                let decryptedData;
+
+                if (password) {
+                    decryptedData = CryptoJS.AES.decrypt(encryptedData, password).toString(CryptoJS.enc.Utf8);
+                    if (!decryptedData) {
+                        throw new Error('Decryption failed; incorrect password or corrupted file.');
+                    }
+                } else {
+                    decryptedData = encryptedData; // Assume plain text if no password is provided
+                }
+
+                const importedData = JSON.parse(decryptedData);
+                if (!Array.isArray(importedData)) {
+                    throw new Error('Invalid backup format.');
+                }
+
+                storedFiles = importedData.map(file => ({
+                    name: file.name,
+                    size: file.size,
+                    data: file.data,
+                    type: file.type
+                }));
+                renderFileList();
+                alert('Backup successfully imported!');
+            } catch (err) {
+                alert(`Failed to import backup: ${err.message}`);
+            }
+        };
+        reader.readAsText(e.target.files[0]);
+    };
+    input.click();
+}
+
     </script>
 </body>
 
