@@ -176,6 +176,14 @@
     <div id="hackScreen"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script>
+        function clearAllFiles() {
+    if (confirm('Are you sure you want to clear all files? This action cannot be undone.')) {
+        storedFiles = [];
+        renderFileList();
+        updateUsage(0);
+        
+    }
+}
         let storedFiles = [];
 
         function addFiles() {
